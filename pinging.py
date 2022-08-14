@@ -12,9 +12,10 @@ def pinger(intervals, how_long_run):
             curtime = datetime.now().strftime('%H:%M:%S')
             try:
                 d = d.split('\n');d = d[2].split(' ');d=d[4].split('=');d=d[1][:-2]
+                f.write(f'{curtime} : {d}ms \n')
             except IndexError:
-                d = 0
-            f.write(f'{curtime} : {d}ms \n')
+                d = "Internet connection lost"
+                f.write(f'{curtime} : {d} \n')
             i += 1
             if int(((datetime.now()-start_time).total_seconds())//60) == how_long_run:
                 break
